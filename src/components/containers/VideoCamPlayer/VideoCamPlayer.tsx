@@ -108,7 +108,7 @@ const VideoCam: React.FC<Props> = ({
         <>
           {renderSettings && isRunning ? (
             <s.btnSettings
-              className={s.btnSettings}
+              data-cy="btn-settings"
               role="button"
               onClick={toggleSettings}
             >
@@ -125,7 +125,7 @@ const VideoCam: React.FC<Props> = ({
                 Sorry but we need camera permissions to work
               </s.errorMessage>
             ) : (
-              <s.btnRequest onClick={requestPermissions}>
+              <s.btnRequest onClick={requestPermissions} data-cy="btn-request">
                 Turn on my camera
               </s.btnRequest>
             )}

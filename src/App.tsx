@@ -16,7 +16,7 @@ function App() {
     }, [])
 
   return (
-    <s.App>
+    <s.App data-testid="app">
       <VideoCamPlayer
         grayScale={isEnabledFilters}
         blurLevel={blurLevel}
@@ -25,12 +25,15 @@ function App() {
             <p>Blur-Level</p>
             <Input
               type="range"
+              data-cy="blur-selector"
               onMouseLeave={() => setIsChanging(false)}
               onChange={handleChangeBlurLevel}
               value={blurLevel}
               renderValue={(value) => {
                 if (!isChanging) return null
-                return <s.blurWidget>{`${value}%`}</s.blurWidget>
+                return (
+                  <s.blurWidget data-cy="blur-widget-indicator">{`${value}%`}</s.blurWidget>
+                )
               }}
             />
             <br />

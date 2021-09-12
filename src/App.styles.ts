@@ -1,4 +1,6 @@
-.App {
+import styled from "styled-components"
+
+export const App = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
@@ -8,16 +10,10 @@
   width: 100%;
   top: 0;
   left: 0;
-}
+`
 
-.video {
-  position: absolute;
-  z-index: -999;
-  display: none;
-}
-
-.toggleFiltersBtn {
-  background-color: transparent;
+export const toggleFiltersBtn = styled.button<{ active: boolean }>`
+  background-color: ${({ active }) => (active ? "#0089ff" : "transparent")};
   cursor: pointer;
   color: #222222;
   text-transform: capitalize;
@@ -29,9 +25,9 @@
   transition: all ease-out 0.2s;
   background-color: rgba(54, 54, 54, 0.432);
   color: white;
-}
+`
 
-.blurWidget {
+export const blurWidget = styled.div`
   position: absolute;
   background-color: #000000;
   color: white;
@@ -41,12 +37,4 @@
   z-index: 1;
   border-radius: 8px;
   padding: 12px;
-}
-
-.blurWidget.active {
-  animation: appear 0.13s ease-out forwards;
-}
-
-.toggleFiltersBtn.colorfull {
-  background-color: #0089ff;
-}
+`

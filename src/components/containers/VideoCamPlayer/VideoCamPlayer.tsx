@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import { FaCogs } from "react-icons/fa"
 
-import s from "./VideoCamPlayer.module.css"
+import * as s from "./VideoCamPlayer.styles"
 import Timer from "../Timer"
 import useTimer from "../../../hooks/useTimer"
 import { transformPixelsIntoGrayScale } from "../../../utils/tools"
@@ -97,52 +97,47 @@ const VideoCam: React.FC<Props> = ({
   }, [blurLevel])
 
   return (
-    <div className={s.wrapper}>
+    <s.wrapper>
       <Timer
         time={{ minutes, seconds }}
         controls={{ play: handlePlay, stop }}
         isRunning={isRunning}
       />
-      <video ref={videoRef} autoPlay className={s.video} />
+      <s.video ref={videoRef} autoPlay />
       {permissionsStatus === "granted" ? (
         <>
           {renderSettings && isRunning ? (
-            <div
-              className={s.btnSettings}
+            <s.btnSettings
+              data-cy="btn-settings"
               role="button"
               onClick={toggleSettings}
             >
               <FaCogs color="#fff" size={32} />
-            </div>
+            </s.btnSettings>
           ) : null}
-          <canvas
-            ref={canvasRef}
-            height={600}
-            width={600}
-            className={s.renderedBox}
-          />
+          <s.renderedBox ref={canvasRef} height={600} width={600} />
         </>
       ) : (
         fallbackPermissionsComponent || (
-          <div className={s.errorWrapper}>
+          <s.errorWrapper>
             {permissionsStatus === "denied" ? (
-              <h2 className={s.errorMessage}>
+              <s.errorMessage>
                 Sorry but we need camera permissions to work
-              </h2>
+              </s.errorMessage>
             ) : (
-              <button className={s.btnRequest} onClick={requestPermissions}>
+              <s.btnRequest onClick={requestPermissions} data-cy="btn-request">
                 Turn on my camera
-              </button>
+              </s.btnRequest>
             )}
-          </div>
+          </s.errorWrapper>
         )
       )}
       {showSettings && permissionsStatus === "granted" && isRunning ? (
-        <div className={s.settingsBox}>
+        <s.settingsBox>
           {renderSettings?.({ blurLevel, grayScale })}
-        </div>
+        </s.settingsBox>
       ) : null}
-    </div>
+    </s.wrapper>
   )
 }
 

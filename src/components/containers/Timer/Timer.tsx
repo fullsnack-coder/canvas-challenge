@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { FaPlay, FaPause } from "react-icons/fa"
 
-import s from "./Timer.module.css"
+import * as s from "./styles"
 
 interface Props {
   isRunning: boolean
@@ -23,12 +23,12 @@ const Timer: React.FC<Props> = ({ isRunning, time, controls }) => {
   }, [isRunning, stop, play])
 
   return (
-    <div className={s.timer}>
+    <s.wrapper>
       <p>{time.minutes}</p>:<p>{time.seconds}</p>
-      <button onClick={handleStopTimer} className={s.timerButton}>
+      <s.button onClick={handleStopTimer} data-cy="btn-pausetimer">
         {isRunning ? <FaPause color="#fff" /> : <FaPlay color="#fff" />}
-      </button>
-    </div>
+      </s.button>
+    </s.wrapper>
   )
 }
 

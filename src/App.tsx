@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useCallback, useState } from "react"
-import s from "./App.module.css"
+import * as s from "./App.styles"
 
 import VideoCamPlayer from "./components/containers/VideoCamPlayer"
 import Input from "./components/common/input"
@@ -16,7 +16,7 @@ function App() {
     }, [])
 
   return (
-    <div className={s.App}>
+    <s.App data-testid="app">
       <VideoCamPlayer
         grayScale={isEnabledFilters}
         blurLevel={blurLevel}
@@ -25,27 +25,28 @@ function App() {
             <p>Blur-Level</p>
             <Input
               type="range"
+              data-cy="blur-selector"
               onMouseLeave={() => setIsChanging(false)}
               onChange={handleChangeBlurLevel}
+              value={blurLevel}
               renderValue={(value) => {
                 if (!isChanging) return null
-                return <div className={`${s.blurWidget}`}>{`${value}%`}</div>
+                return (
+                  <s.blurWidget data-cy="blur-widget-indicator">{`${value}%`}</s.blurWidget>
+                )
               }}
-              value={blurLevel}
             />
             <br />
-            <button
-              className={`${s.toggleFiltersBtn} ${
-                grayScale ? "" : s.colorfull
-              }`}
+            <s.toggleFiltersBtn
+              active
               onClick={() => setIsEnabledFilters((prev) => !prev)}
             >
               Snyder-cut filter: {`${grayScale ? "enabled" : "disabled"}`}
-            </button>
+            </s.toggleFiltersBtn>
           </div>
         )}
       />
-    </div>
+    </s.App>
   )
 }
 

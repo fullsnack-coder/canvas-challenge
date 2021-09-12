@@ -1,5 +1,6 @@
 import { ComponentProps } from "react"
-import s from "./input.module.css"
+
+import * as s from "./input.styles"
 
 type Props = ComponentProps<"input"> & {
   containerStyle?: React.CSSProperties
@@ -14,10 +15,10 @@ const Input: React.FC<Props> = ({
 }) => {
   if (type === "range") {
     return (
-      <div className={s.wrapper} style={containerStyle}>
+      <s.wrapper style={containerStyle}>
         {renderValue?.(rest.value)}
         <input type={type} {...rest} />
-      </div>
+      </s.wrapper>
     )
   }
   return <input type={type} {...rest} />

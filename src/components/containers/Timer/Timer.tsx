@@ -25,7 +25,7 @@ const Timer: React.FC<Props> = ({ isRunning, time, controls }) => {
   return (
     <s.wrapper>
       <p>{time.minutes}</p>:<p>{time.seconds}</p>
-      <s.button onClick={handleStopTimer}>
+      <s.button onClick={handleStopTimer} data-cy="btn-pausetimer">
         {isRunning ? <FaPause color="#fff" /> : <FaPlay color="#fff" />}
       </s.button>
     </s.wrapper>

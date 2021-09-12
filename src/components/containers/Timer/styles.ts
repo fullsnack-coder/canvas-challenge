@@ -1,4 +1,6 @@
-.timer {
+import styled from "styled-components"
+
+export const wrapper = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
@@ -11,13 +13,13 @@
   top: 34px;
   left: 34px;
   z-index: 1;
-}
+`
 
-.timerButton {
+export const button = styled.button`
   background: transparent;
   border: solid 1px #fff;
   border-radius: 6px;
   cursor: pointer;
   margin-left: 8px;
   padding: 8px;
-}
+`
